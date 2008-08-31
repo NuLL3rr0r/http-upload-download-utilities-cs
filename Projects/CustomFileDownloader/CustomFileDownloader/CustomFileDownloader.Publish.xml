@@ -1,0 +1,8 @@
+<publishData>
+  <publishTarget publishUrl="C:\Documents and Settings\Administrator\Desktop\WebSite\">
+    <file relUrl="Default.aspx" publishTime="11/22/2008 06:32:11" />
+    <file relUrl="bin/CustomFileDownloader.dll" publishTime="11/22/2008 06:34:05" />
+    <file relUrl="bin/CustomFileDownloader.pdb" publishTime="11/22/2008 06:34:05" />
+    <file relUrl="Web.config" publishTime="11/22/2008 06:07:18" />
+  </publishTarget>
+</publishData>

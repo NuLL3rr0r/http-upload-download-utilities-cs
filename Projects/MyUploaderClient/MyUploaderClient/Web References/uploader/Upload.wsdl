@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="UploadChunk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="upPath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="buffer" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="offset" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="forceMode" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadChunkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadChunkResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="UploadChunkSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadChunk" />
+  </wsdl:message>
+  <wsdl:message name="UploadChunkSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadChunkResponse" />
+  </wsdl:message>
+  <wsdl:portType name="UploadSoap">
+    <wsdl:operation name="UploadChunk">
+      <wsdl:input message="tns:UploadChunkSoapIn" />
+      <wsdl:output message="tns:UploadChunkSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UploadSoap" type="tns:UploadSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadChunk">
+      <soap:operation soapAction="http://tempuri.org/UploadChunk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="UploadSoap12" type="tns:UploadSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadChunk">
+      <soap12:operation soapAction="http://tempuri.org/UploadChunk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Upload">
+    <wsdl:port name="UploadSoap" binding="tns:UploadSoap">
+      <soap:address location="http://haibo.13x17.com/Upload.asmx" />
+    </wsdl:port>
+    <wsdl:port name="UploadSoap12" binding="tns:UploadSoap12">
+      <soap12:address location="http://haibo.13x17.com/Upload.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
